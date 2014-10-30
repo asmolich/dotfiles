@@ -1,0 +1,85 @@
+[user]
+    name = Anton Smolich
+    email = a.smolich@gmail.com
+[core]
+    editor = vim
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    excludesfile = ~/.gitignore
+[sendemail]
+    #smtpencryption = tls
+    #smtpserver = smtp.gmail.com
+    #smtpuser = a.smolich@gmail.com
+    #smtppass = secret
+    #smtpserverport = 587
+[web]
+    browser = google-chrome
+[instaweb]
+    httpd = apache2 -f
+[rerere]
+    enabled = 1
+    autoupdate = 1
+[push]
+    default = matching
+[color]
+    ui = auto
+[color "branch"]
+    current = green bold
+    local = white bold
+    remote = cyan bold
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+[color "status"]
+    added = green bold
+    changed = red bold
+    untracked = red bold
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[github]
+    user = asmolich
+    token = token
+[gitflow "prefix"]
+    feature = feature/
+    release = release/
+    hotfix = hotfix/
+    support = support/
+    versiontag = v
+[alias]
+    tree = log --graph --pretty=format:'%C(yellow)%h\t[%ad]%C(reset) \
+          -%C(yellow) %d% C(reset) %s %C(green)(%cr) %C(blue)%an\
+          %C(reset)' --abbrev-commit --date=short
+    cp = cherry-pick
+    st = status -s
+    cl = clone
+    ci = commit
+    co = checkout
+    br = branch 
+    diff = diff --word-diff
+    dc = diff --cached
+    lasttag = describe --tags --abbrev=0
+    lt = describe --tags --abbrev=0
+    r = reset
+    r1 = reset HEAD^
+    r2 = reset HEAD^^
+    rh = reset --hard
+    rh1 = reset HEAD^ --hard
+    rh2 = reset HEAD^^ --hard
+    sl = stash list
+    sa = stash apply
+    ss = stash save
+    grep = grep -Ii
+    gr = grep -Ii
+    filelog = log -u
+    fl = log -u
+    f = "!git ls-files | grep -i"
+    dr  = "!f() { git diff "$1"^.."$1"; }; f"
+    lc  = "!f() { git ll "$1"^.."$1"; }; f"
+    diffr  = "!f() { git diff "$1"^.."$1"; }; f"
+    la = "!git config -l | grep alias | cut -c 7-"
+	create-pull-request = !sh -c 'stash pull-request $0'
+
