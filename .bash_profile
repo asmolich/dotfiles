@@ -1,5 +1,5 @@
 #bash profile
-export HOME=/Users/antonsmolich
+export HOME=/Users/a_smolich
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LSCOLORS=ExFxBxDxCxegedabagacad
@@ -100,4 +100,5 @@ export PATH="/usr/local/Cellar/qt5/5.7/5.7/clang_64/bin:$PATH"
 
 #pip should run in virtual env only
 export PIP_REQUIRE_VIRTUALENV=true
+source /usr/local/bin/virtualenvwrapper.sh
 
