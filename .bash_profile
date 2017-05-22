@@ -41,7 +41,7 @@ export MAVEN_OPTS=$GRADLE_OPTS
 export GROOVY_HOME=/usr/local/opt/groovy/libexec
 
 #grails
-export GRAILS_HOME="/usr/local/opt/grails/libexec"
+export GRAILS_HOME=/usr/local/opt/grails/libexec
 
 #perforce
 export P4CONFIG=$HOME/.p4config
@@ -66,7 +66,8 @@ include $HOME/.aws_env
 
 #prompt
 PROMPT_COMMAND=__prompt_command
-PS1='\[\e[1;32m\]\u\[\e[0;37m\]@\[\e[1;33m\]\h\[\e[0;37m\]:\[\e[1;36m\]\w\[\e[1;37m\]: \[\e[1;32m\]:) \[\e[0m\]$ '
+#fall back ps1
+PS1='\[\e[1;32m\]\u\[\e[0;37m\]@\[\e[1;33m\]\h\[\e[0;37m\]:\[\e[1;36m\]\w\[\e[1;37m\]: \[\e[0m\]$ '
 PS2='> '
 PS4='+ '
 
@@ -74,7 +75,11 @@ __prompt_command ()
 { 
     local EXIT="$?";
     PS1="";
-    PS1+="${LIGHT_GREEN}\u${LIGHT_GRAY}@${YELLOW}\h${LIGHT_GRAY}:${LIGHT_CYAN}\w${WHITE}: ";
+    PS1+="${LIGHT_GREEN}\u${LIGHT_GRAY}@${YELLOW}\h${LIGHT_GRAY}:${LIGHT_CYAN}\w";
+#    if [ $GIT_PS1_SHOWDIRTYSTATE ]; then
+#        PS1+="$(__git_ps1)";
+#    fi
+    PS1+="${WHITE}: ";
     if [ $EXIT != 0 ]; then
         PS1+="${RED}:( ${RCOL}\$ ";
     else
@@ -89,16 +94,20 @@ include $HOME/.bash_aliases
 include `brew --prefix`/etc/bash_completion
 
 #terraform
-include "$HOME/.bash_tf" 
+include $HOME/.bash_tf
+
+#git prompt
+export GIT_PS1_SHOWDIRTYSTATE=true
+export __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+include $__GIT_PROMPT_DIR/gitprompt.sh
+export GIT_PROMPT_ONLY_IN_REPO=1
+include $HOME/.bash-git-prompt/gitprompt.sh
 
 #rmv
 include "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 
-#qt
-export PATH="/usr/local/Cellar/qt5/5.7/5.7/clang_64/bin:$PATH"
-
 #pip should run in virtual env only
 export PIP_REQUIRE_VIRTUALENV=true
-source /usr/local/bin/virtualenvwrapper.sh
+[[ $PIP_REQUIRE_VIRTUALENV ]] && include /usr/local/bin/virtualenvwrapper.sh
 
