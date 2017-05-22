@@ -1,0 +1,5 @@
+ghetto-tf ()
+{
+    docker pull hub.ol.epicgames.net/epicgames/terraform;
+    docker run --rm -i -t -v `pwd`:/terraform/config hub.ol.epicgames.net/epicgames/terraform $1 -var aws_access_key_id=$AWS_ACCESS_KEY_ID -var aws_secret_access_key=$AWS_SECRET_ACCESS_KEY
+}

@@ -11,6 +11,10 @@ export P4_EDITOR=vim
 export GIT_EDITOR=vim
 export FIGNORE=$FIGNORE:DS_Store
 
+include () {
+    [[ -f "$1" ]] && source "$1"
+}
+
 #colors
 GREEN='\[\e[0;32m\]'
 LIGHT_BLUE='\[\e[1;34m\]'
@@ -25,14 +29,40 @@ YELLOW='\[\e[1;33m\]'
 
 #java
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+export PATH=${JAVA_HOME}/bin:$PATH
 
 #gradle
-export GRADLE_OPTS='-Xmx1g -XX:MaxPermSize=300m -XX:+CMSClassUnloadingEnabled -Xdebug -Xrunjdwp:transport=dt_socket,address=9999,server=y,suspend=n -Dorg.gradle.daemon=true'
+export GRADLE_OPTS='-Xmx1g -XX:+CMSClassUnloadingEnabled -Xdebug -Dorg.gradle.daemon=true'
+export JAVA_OPTS='-Xmx1g -XX:+CMSClassUnloadingEnabled' # -Xdebug -Xrunjdwp:transport=dt_socket,address=5555,server=y,suspend=n'
+export ANT_OPTS='-Xmx1g -XX:+CMSClassUnloadingEnabled' # -Xdebug -Xrunjdwp:transport=dt_socket,address=9898,server=y,suspend=n'
+export MAVEN_OPTS=$GRADLE_OPTS
+
+#groovy
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+
+#grails
+export GRAILS_HOME="/usr/local/opt/grails/libexec"
 
 #perforce
-export P4CONFIG=.p4config
+export P4CONFIG=$HOME/.p4config
 
-export PATH='$HOME/.gvm/vertx/current/bin:$HOME/.gvm/springboot/current/bin:$HOME/.gvm/lazybones/current/bin:$HOME/.gvm/jbake/current/bin:$HOME/.gvm/groovyserv/current/bin:$HOME/.gvm/groovy/current/bin:$HOME/.gvm/griffon/current/bin:$HOME/.gvm/grails/current/bin:$HOME/.gvm/gradle/current/bin:$HOME/.gvm/glide/current/bin:$HOME/.gvm/gaiden/current/bin:$HOME/.gvm/crash/current/bin:/Library/Java/JavaVirtualMachines/jdk1.7.0_72.jdk/Contents/Home/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/bin:/usr/local/git/bin:/usr/local:/usr/local/sbin:~/dev/UnrealEngine/Engine/Binaries/Mac'
+#manpath
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export PATH=$MANPATH:$PATH
+
+#gopath
+export GOPATH="/usr/local/opt/go/libexec/bin"
+export PATH=$GOPATH:$PATH
+
+#mono
+export MONO_GAC_PREFIX="/usr/local"
+
+#path
+export PATH="$HOME/dev/UnrealEngine/Engine/Binaries/Mac:$PATH"
+export PATH="/usr/local/sbin:$PATH"
+
+#aws
+include $HOME/.aws_env
 
 #prompt
 PROMPT_COMMAND=__prompt_command
@@ -52,13 +82,22 @@ __prompt_command ()
     fi
 }
 
-include () {
-    [[ -f "$1" ]] && source "$1"
-}
-
 include $HOME/.profile
 include $HOME/.bashrc
 include $HOME/.bash_aliases
 
 include `brew --prefix`/etc/bash_completion
+
+#terraform
+include "$HOME/.bash_tf" 
+
+#rmv
+include "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
+
+#qt
+export PATH="/usr/local/Cellar/qt5/5.7/5.7/clang_64/bin:$PATH"
+
+#pip should run in virtual env only
+export PIP_REQUIRE_VIRTUALENV=true
 

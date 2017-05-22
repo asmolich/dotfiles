@@ -5,17 +5,20 @@ config resizePercentOf screenSize
 config secondsBetweenRepeat 0.1
 config checkDefaultsOnLoad true
 config focusCheckWidthMax 3000
+config orderScreensLeftToRight false
 
 # Monitor Aliases
 alias mon-laptop      1680x1050
 alias mon-mac-air     1440x900
 alias mon-thunderbolt 2560x1440
-alias mon-dell22inch  1920x1080
+alias mon-fullhd      1920x1080
 alias mon-maxtor2     3840x1080
+alias mon-retina      2880x1800
+alias mon-hp          1920x1200
 
 # Position Aliases
-alias 1-chat  move screenOriginX;screenOriginY                               screenSizeX;screenSizeY       ${mon-mac-air}
-alias 1-full  move screenOriginX;screenOriginY                               screenSizeX;screenSizeY       ${mon-mac-air}
+alias 1-chat   move screenOriginX;screenOriginY                               screenSizeX;screenSizeY         ${mon-retina}
+alias 1-full   move screenOriginX;screenOriginY                               screenSizeX;screenSizeY         ${mon-retina}
 #alias 2-bot   move screenOriginX;screenOriginY+screenSizeY/2                 screenSizeX;screenSizeY/2       ${mon-thunderbolt}
 #alias 2-bot-l move screenOriginX;screenOriginY+screenSizeY/2                 screenSizeX/3;screenSizeY/2     ${mon-thunderbolt}
 #alias 2-bot-m move screenOriginX+screenSizeX/3;screenOriginY+screenSizeY/2   screenSizeX/3;screenSizeY/2     ${mon-thunderbolt}
@@ -25,27 +28,18 @@ alias 1-full  move screenOriginX;screenOriginY                               scr
 #alias 2-top-l move screenOriginX;screenOriginY                               screenSizeX/2;screenSizeY/2     ${mon-thunderbolt}
 #alias 2-top-m move screenOriginX+screenSizeX/6;screenOriginY                 2*screenSizeX/3;screenSizeY/2   ${mon-thunderbolt}
 #alias 2-top-r move screenOriginX+screenSizeX/2;screenOriginY                 screenSizeX/2;screenSizeY/2     ${mon-thunderbolt}
-#alias 2-left  move screenOriginX;screenOriginY                               screenSizeX/2;screenSizeY       ${mon-thunderbolt}
-#alias 2-right move screenOriginX+screenSizeX/2;screenOriginY                 screenSizeX/2;screenSizeY       ${mon-thunderbolt}
-#alias 3-l-bot move screenOriginX;screenOriginY+screenSizeY/2                 screenSizeX/2;screenSizeY/2     ${mon-hp22inch}
-#alias 3-l-top move screenOriginX;screenOriginY                               screenSizeX/2;screenSizeY/2     ${mon-hp22inch}
-#alias 3-right move screenOriginX+screenSizeX/2;screenOriginY                 screenSizeX/2;screenSizeY       ${mon-hp22inch}
-alias 2m-full  move screenOriginX;screenOriginY                              screenSizeX;screenSizeY        ${mon-maxtor2}
-alias 2m-left  move screenOriginX;screenOriginY                              screenSizeX/2;screenSizeY      ${mon-maxtor2}
-alias 2m-right move screenOriginX+screenSizeX/2;screenOriginY                screenSizeX;screenSizeY        ${mon-maxtor2}
+alias 2-left   move screenOriginX;screenOriginY                               screenSizeX/2;screenSizeY       ${mon-hp}
+alias 2-right  move screenOriginX+screenSizeX/2;screenOriginY                 screenSizeX/2;screenSizeY       ${mon-hp}
+alias 2m-full  move screenOriginX;screenOriginY                               screenSizeX;screenSizeY         ${mon-maxtor2}
+alias 2m-left  move screenOriginX;screenOriginY                               screenSizeX/2;screenSizeY       ${mon-maxtor2}
+alias 2m-right move screenOriginX+screenSizeX/2;screenOriginY                 screenSizeX;screenSizeY         ${mon-maxtor2}
 
 
 # 3 Monitor layout
-#layout 3monitors 'iTerm':SORT_TITLE                       ${2-bot-l} | ${2-bot-m} | ${2-bot-r}
-#layout 3monitors 'Google Chrome':REPEAT_LAST,TITLE_ORDER_REGEX=^Developer\sTools\s-\s.+$  ${3-right} | ${1-main}
-#layout 3monitors 'MacVim'                                 ${2-top-r} | ${2-top-l} | ${2-top-m}
-#layout 3monitors 'Flex Builder'                           ${2-top-l}
-#layout 3monitors 'GitX':REPEAT                            ${3-right}
+layout 3monitors 'iTerm':SORT_TITLE                       ${1-full}
+layout 3monitors 'Google Chrome':REPEAT_LAST,TITLE_ORDER_REGEX=^Developer\sTools\s-\s.+$  ${2-left}
 #layout 3monitors 'Ooyala Player Debug Console'            ${3-l-bot}
-#layout 3monitors 'Adium':IGNORE_FAIL,TITLE_ORDER=Contacts ${1-chat} | ${3-l-bot}
-#layout 3monitors 'Firefox':REPEAT                         ${2-mid}
 #layout 3monitors 'Xcode':REPEAT                           ${2-top}
-#layout 3monitors 'Eclipse':REPEAT                         ${2-bot}
 #layout 3monitors 'Spotify':REPEAT                         ${3-l-top}
 
 # 2 Monitor layout
@@ -64,28 +58,21 @@ alias 2m-right move screenOriginX+screenSizeX/2;screenOriginY                scr
 # 2 Monitors via Maxtor DualHead2Go layout
 layout 2maxtor 'iTerm':SORT_TITLE                       ${1-full}
 layout 2maxtor 'Google Chrome':REPEAT                   ${2m-left}
-layout 2maxtor 'MacVim'                                 ${1-full}
 layout 2maxtor 'Eclipse':REPEAT                         ${2m-right}
 layout 2maxtor 'Spotify':REPEAT                         ${1-full}
 
 # 1 Monitor layout
 layout 1monitor 'iTerm':SORT_TITLE,REPEAT                ${1-full}
 layout 1monitor 'Google Chrome':REPEAT                   ${1-full}
-layout 1monitor 'MacVim':REPEAT                          ${1-full}
-layout 1monitor 'Flex Builder':REPEAT                    ${1-full}
-layout 1monitor 'GitX':REPEAT                            ${1-full}
-layout 1monitor 'Ooyala Player Debug Console':REPEAT     ${1-full}
-layout 1monitor 'Adium':IGNORE_FAIL,TITLE_ORDER=Contacts ${1-full} | ${1-full}
-layout 1monitor 'Firefox':REPEAT                         ${1-full}
 layout 1monitor 'Xcode':REPEAT                           ${1-full}
 layout 1monitor 'Eclipse':REPEAT                         ${1-full}
 layout 1monitor 'Spotify':REPEAT                         ${1-full}
 
 # Default Layouts
-#default 3monitors resolutions:${mon-mac-air};${mon-thunderbolt};${mon-hp22inch}
+default 3monitors resolutions:${mon-retina};${mon-hp};${mon-hp}
 #default 2monitors resolutions:${mon-mac-air};${mon-thunderbolt}
-default 2maxtor   resolutions:${mon-mac-air};${mon-maxtor2}
-default 1monitor  resolutions:${mon-mac-air}
+#default 2maxtor   resolutions:${mon-mac-air};${mon-maxtor2}
+default 1monitor  resolutions:${mon-retina}
 
 # Basic location Bindings
 #bind pad0:ctrl ${1-chat}
@@ -113,15 +100,11 @@ bind right:ctrl resize +10% +0
 bind left:ctrl  resize -10% +0
 bind up:ctrl    resize +0   -10%
 bind down:ctrl  resize +0   +10%
-#bind right:alt  resize -10% +0 bottom-right
-#bind left:alt   resize +10% +0 bottom-right
-#bind up:alt     resize +0   +10% bottom-right
-#bind down:alt   resize +0   -10% bottom-right
 
 # Push Bindings
 # NOTE: some of these may *not* work if you have not removed the expose/spaces/mission control bindings
-bind right:ctrl;shift push right bar-resize:screenSizeX/3
-bind left:ctrl;shift  push left  bar-resize:screenSizeX/3
+bind right:ctrl;shift push right bar-resize:screenSizeX/2
+bind left:ctrl;shift  push left  bar-resize:screenSizeX/2
 bind up:ctrl;shift    push up    bar-resize:screenSizeY/2
 bind down:ctrl;shift  push down  bar-resize:screenSizeY/2
 
@@ -134,9 +117,16 @@ bind down:ctrl;alt  nudge +0   +10%
 
 # Throw Bindings
 # NOTE: some of these may *not* work if you have not removed the expose/spaces/mission control bindings
-bind 1:ctrl;alt      throw 1 resize
-bind 2:ctrl;alt      throw 0 resize:screenSizeX/2;screenSizeY
-bind 3:ctrl;alt      ${2m-right}
+bind 1:ctrl;alt      throw 0 resize
+bind 2:ctrl;alt      throw 1 resize
+bind 3:ctrl;alt      throw 2 resize
+bind 4:ctrl;alt      chain throw 0 resize:screenSizeX/2;screenSizeY | push right
+bind 5:ctrl;alt      chain throw 1 resize:screenSizeX/2;screenSizeY | push right
+bind 6:ctrl;alt      chain throw 2 resize:screenSizeX/2;screenSizeY | push right
+bind 7:ctrl;alt      throw 0 resize
+bind 8:ctrl;alt      throw 0 resize
+bind 9:ctrl;alt      throw 0 resize
+bind 0:ctrl;alt      throw 0 resize
 bind right:ctrl;alt;cmd throw right resize
 bind left:ctrl;alt;cmd  throw left  resize
 bind up:ctrl;alt;cmd    throw up    resize
@@ -144,18 +134,18 @@ bind down:ctrl;alt;cmd  throw down  resize
 
 # Focus Bindings
 # NOTE: some of these may *not* work if you have not removed the expose/spaces/mission control bindings
-#bind right:cmd    focus right
-#bind left:cmd     focus left
-#bind up:cmd       focus up
-#bind down:cmd     focus down
-bind up:cmd;alt   focus behind
-bind down:cmd;alt focus behind
+#bind right:cmd     focus right
+#bind left:cmd      focus left
+#bind up:cmd        focus up
+#bind down:cmd      focus down
+#bind up:cmd;alt    focus behind
+#bind down:cmd;alt  focus behind
 
 # Layout Bindings
 #bind enter:ctrl;shift layout 2maxtor
 
 # Window Hints
-bind esc:cmd hint
+bind esc:cmd hint 1234567890
 
 # Switch currently doesn't work well so I'm commenting it out until I fix it.
 #bind tab:ctrl switch

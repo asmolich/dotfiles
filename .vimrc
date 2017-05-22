@@ -277,6 +277,9 @@ func! DeleteTrailingWS()
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
+autocmd BufWrite *.groovy :call DeleteTrailingWS()
+autocmd BufWrite *.gradle :call DeleteTrailingWS()
+au BufNewFile,BufRead *.gradle setf groovy
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -335,7 +338,6 @@ map <leader>q :e ~/buffer<cr>
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
-
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
