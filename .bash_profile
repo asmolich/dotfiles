@@ -28,13 +28,13 @@ WHITE='\[\e[1;37m\]'
 YELLOW='\[\e[1;33m\]'
 
 #java
+export JAVA_OPTS='-Xmx1g -XX:+CMSClassUnloadingEnabled' # -Xdebug -Xrunjdwp:transport=dt_socket,address=5555,server=y,suspend=n'
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export PATH=${JAVA_HOME}/bin:$PATH
 
 #gradle
 export GRADLE_OPTS='-Xmx1g -XX:+CMSClassUnloadingEnabled -Xdebug -Dorg.gradle.daemon=true'
-export JAVA_OPTS='-Xmx1g -XX:+CMSClassUnloadingEnabled' # -Xdebug -Xrunjdwp:transport=dt_socket,address=5555,server=y,suspend=n'
-export ANT_OPTS='-Xmx1g -XX:+CMSClassUnloadingEnabled' # -Xdebug -Xrunjdwp:transport=dt_socket,address=9898,server=y,suspend=n'
+export GRADLE_HOME=/usr/local/opt/gradle/libexec/
 export MAVEN_OPTS=$GRADLE_OPTS
 
 #groovy
@@ -102,6 +102,7 @@ export __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
 include $__GIT_PROMPT_DIR/gitprompt.sh
 export GIT_PROMPT_ONLY_IN_REPO=1
 include $HOME/.bash-git-prompt/gitprompt.sh
+gp_add_virtualenv_to_prompt
 
 #rmv
 include "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
