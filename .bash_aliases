@@ -1,12 +1,12 @@
 alias ..='cd ..'
-alias be="bundle exec"
+alias be='bundle exec'
 alias brew-update='brew update; brew list | xargs brew upgrade; brew cleanup'
 alias dependency-resolve='mvn dependency:resolve'
 alias dependency-sources='mvn dependency:sources'
 alias format='codevalidator.py --no-backup -rf '
 alias gd='git diff $@'
 alias gdf='git difftool --tool=opendiff --no-prompt $@'
-alias gformat='git st $@ | awk '\''/^[A\|M\|R]/ {print $NF}'\'' | xargs codevalidator.py --no-backup -rf'
+alias gformat="git st $@ | awk '\"'/^[A\|M\|R]/ {print $NF}'\"' | xargs codevalidator.py --no-backup -rf"
 alias gs='git st $@'
 alias gst='git status $@'
 alias gtree='git tree $@'
@@ -39,3 +39,4 @@ alias use_maven31='[ -f /usr/share/maven ] || sudo rm /usr/share/maven; sudo ln 
 alias vim='mvim -v'
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 alias killaudio="ps -ax | grep coreaudiod | grep -v grep | awk '{print \$1}' | xargs sudo kill"
+alias killanyc='sudo pkill acise'

@@ -32,6 +32,9 @@ export JAVA_OPTS='-Xmx1g -XX:+CMSClassUnloadingEnabled' # -Xdebug -Xrunjdwp:tran
 export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
 export PATH=${JAVA_HOME}/bin:$PATH
 
+#python
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
 #gradle
 export GRADLE_OPTS='-Xmx1g -XX:+CMSClassUnloadingEnabled -Xdebug -Dorg.gradle.daemon=true'
 export GRADLE_HOME=/usr/local/opt/gradle/libexec/
@@ -48,6 +51,7 @@ export P4CONFIG=$HOME/.p4config
 
 #manpath
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+export MANPATH="/usr/local/opt/erlang/lib/erlang/man:$MANPATH"
 export PATH=$MANPATH:$PATH
 
 #gopath
@@ -57,8 +61,10 @@ export PATH=$GOPATH:$PATH
 #mono
 export MONO_GAC_PREFIX="/usr/local"
 
-#path
+#UE
 export PATH="$HOME/dev/UnrealEngine/Engine/Binaries/Mac:$PATH"
+
+#path
 export PATH="/usr/local/sbin:$PATH"
 
 #aws
@@ -71,8 +77,7 @@ PS1='\[\e[1;32m\]\u\[\e[0;37m\]@\[\e[1;33m\]\h\[\e[0;37m\]:\[\e[1;36m\]\w\[\e[1;
 PS2='> '
 PS4='+ '
 
-__prompt_command () 
-{ 
+__prompt_command() {
     local EXIT="$?";
     PS1="";
     PS1+="${LIGHT_GREEN}\u${LIGHT_GRAY}@${YELLOW}\h${LIGHT_GRAY}:${LIGHT_CYAN}\w";
@@ -82,7 +87,6 @@ __prompt_command ()
     PS1+="${WHITE}: ";
     if [ $EXIT != 0 ]; then
         PS1+="${RED}:( ${RCOL}\$ ";
-    else
         PS1+="${LIGHT_GREEN}:) ${RCOL}\$ ";
     fi
 }
@@ -90,8 +94,6 @@ __prompt_command ()
 include $HOME/.profile
 include $HOME/.bashrc
 include $HOME/.bash_aliases
-
-include `brew --prefix`/etc/bash_completion
 
 #terraform
 include $HOME/.bash_tf
@@ -104,11 +106,15 @@ export GIT_PROMPT_ONLY_IN_REPO=1
 include $HOME/.bash-git-prompt/gitprompt.sh
 gp_add_virtualenv_to_prompt
 
-#rmv
+#rvm
 include "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 export PATH="$HOME/.rvm/bin:$PATH" # Add RVM to PATH for scripting
 
-#pip should run in virtual env only
-export PIP_REQUIRE_VIRTUALENV=true
-[[ $PIP_REQUIRE_VIRTUALENV ]] && include /usr/local/bin/virtualenvwrapper.sh
+#virtualenv
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python2.7"
+export PIP_REQUIRE_VIRTUALENV=false
+[[ $PIP_REQUIRE_VIRTUALENV ]] && include "/usr/local/bin/virtualenvwrapper.sh"
+
+# bash-completion
+include `brew --prefix`/etc/bash_completion
 
