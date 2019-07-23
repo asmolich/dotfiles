@@ -1,5 +1,4 @@
 #bash profile
-export HOME=/Users/a_smolich
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export LSCOLORS=ExFxBxDxCxegedabagacad
@@ -87,6 +86,7 @@ __prompt_command() {
     PS1+="${WHITE}: ";
     if [ $EXIT != 0 ]; then
         PS1+="${RED}:( ${RCOL}\$ ";
+    else
         PS1+="${LIGHT_GREEN}:) ${RCOL}\$ ";
     fi
 }
